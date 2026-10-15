@@ -12,6 +12,32 @@ read_when:
 一套经过实测的完整方案：社区脚本做每日批量任务，UI 自动化兜底"PC 限定"任务，
 定时任务每天凌晨自动跑并输出核验报告。2026-10 实测从 14/18 清到全清 + 等级 17→18。
 
+## 快速开始：对 WorkBuddy 说的一段话
+
+新用户把下面这段话**整段复制**发给自己的 WorkBuddy 即可，它会自动完成安装、
+配置、试跑和定时任务创建（第 8 步的定时任务创建需要用户在客户端里确认）：
+
+```text
+帮我部署 WorkBuddy 成长计划全自动助手，严格按以下步骤执行：
+
+1. 安装本技能：克隆 https://github.com/ArimaKana7official/workbuddy-growth-auto
+   到 ~/.workbuddy/skills/workbuddy-growth-auto，然后阅读其中的 SKILL.md 作为本任务的执行手册。
+2. 安装依赖技能：搜索并安装 totorosir-workbuddy-score（积分助手技能）。
+3. 克隆社区脚本到工作区：git clone --depth 1 https://github.com/mryuanxiaojun/WorkBuddy-Daily.git
+4. 对克隆下来的 workbuddy_daily.py 做安全审查（按 SKILL.md「安全与风险」一节）：
+   确认外联域名仅腾讯系（tencent.com/qq.com/myqcloud.com）、无 exec/eval/subprocess
+   动态执行、无可疑文件写操作。审查不通过就停下来向我报告，不要继续。
+5. 按 SKILL.md「必打补丁」一节给脚本打 3 个补丁（禁真实桌面模式开关、
+   /v2/report 裸数组、accept 锁定三态），打完做语法检查。
+6. 用技能包 scripts/gen_tokens.py 从我本机登录态静默生成令牌库
+   （token 绝不能显示在对话或日志里），然后只读试跑 --query 验证连通。
+7. 手动完整试跑一次（WB_DAILY_NO_REAL_DESKTOP=1，--gap 2.0），给我看报告。
+8. 试跑成功后，创建每天凌晨 1:00 的定时任务：提示词使用 SKILL.md 的
+   「定时任务提示词模板」整段内容，并结合「PC 限定任务流程」一节。
+   创建前把任务计划展示给我确认。
+注意：全程不要把 wb_refresh_tokens.json 的内容输出到对话或写入任何会外传的地方。
+```
+
 ## 方案组成（三层）
 
 | 层 | 工具 | 覆盖 |
